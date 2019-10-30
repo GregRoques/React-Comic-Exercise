@@ -1,0 +1,130 @@
+
+/* ================================================= More Options Styling */
+
+.moreOptions{
+  position: relative;
+  width:100%;
+  height:35px;
+  font-size:18px;
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.moreOptions > div {
+  position: relative;
+  color: transparent;
+  text-decoration: none;
+    
+}
+
+.moreOptions > div:hover  {
+    cursor: pointer;
+    color: transparent;
+}
+
+.moreOptions > div:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #F73704;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+  }
+
+  .moreOptions >div:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+  }
+
+.add, .subtract {
+    font-style: italic;
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    color:#F73704;
+    font-size: 2rem;
+}
+  
+.add > .one {
+      opacity: 0;
+      -webkit-animation: addDot 2s infinite;
+      -webkit-animation-delay: 0.0s;
+      animation: addDot 2s infinite;
+      animation-delay: 0.0s;
+  }
+  
+  .add > .two {
+      opacity: 0;
+      -webkit-animation: addDot 2s infinite;
+      -webkit-animation-delay: 0.25s;
+        animation: addDot 2s infinite;
+        animation-delay: 0.25s;
+  }
+  
+  .add > .threee {
+      opacity: 0;
+      -webkit-animation: addDot 2s infinite;
+      -webkit-animation-delay: 0.35s;
+       animation: addDot 2s infinite;
+       animation-delay: 0.35s;
+  }
+    
+  
+  @-webkit-keyframes addDot {
+        0% { opacity: 0; }
+       50% { opacity: 0; }
+      100% { opacity: 1; }
+  }
+  
+  @keyframes addDot {
+        0% { opacity: 0; }
+       50% { opacity: 0; }
+      100% { opacity: 1; }
+  }
+
+  .subtract > .one {
+    opacity: 0;
+    -webkit-animation: subtractDot 2s infinite;
+    -webkit-animation-delay: 0.0s;
+    animation: subtractDot 2s infinite;
+    animation-delay: 0.0s;
+}
+
+.subtract > .two {
+    opacity: 0;
+    -webkit-animation: subtractDot 2s infinite;
+    -webkit-animation-delay: 0.25s;
+      animation: subtractDot 2s infinite;
+      animation-delay: 0.25s;
+}
+
+.subtract > .threee {
+    opacity: 0;
+    -webkit-animation: subtractDot 2s infinite;
+    -webkit-animation-delay: 0.35s;
+     animation: subtractDot 2s infinite;
+     animation-delay: 0.35s;
+}
+  
+@-webkit-keyframes subtractDot {
+      0% { opacity: 1; }
+     50% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes subtractDot {
+      0% { opacity: 1; }
+     50% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+  
