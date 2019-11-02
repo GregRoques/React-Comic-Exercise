@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import Aux from "./Aux";
 import cssNavBar from "./cssNavBar.module.css";
-import { css } from "emotion";
-
-const boldText = css`
-    font-weight: bold,
-    color: rgb(250,173,73)
-`;
-
-const cssJoin = [cssNavBar.textSpace, boldText];
 
 class NavBar extends Component {
     state = {
@@ -20,27 +12,29 @@ class NavBar extends Component {
             isFadeOut: true
         });
         setTimeout(() => {
+            window.location.replace(props);
             this.setState({
                 isFadeOut: false
             });
-            window.location.replace(props);
-        }, 1000);
+        }, 2000);
     }
 
     render () {
         const isHomeBold = window.location.pathname === "/";
-
         return (
             <div>
                 <div className={ cssNavBar.container}>
                     <div className ={ cssNavBar.headerContainerText}>
-                        <span className = { isHomeBold ? cssJoin.join(" ") : cssNavBar.textSpace } onClick ={() => this.selectLink("/") } >Latest </span>
-                        <span className = { !isHomeBold ? cssJoin.join(" ") : cssNavBar.textSpace } onClick ={() => this.selectLink("/search") } >Search </span>
+                        <span className = { isHomeBold ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/") } >Latest </span>
+                        <span className = { !isHomeBold ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/search") } >Search </span>
                     </div>
                 </div>
-                <Aux className ={ this.state.isFadeOut ? cssNavBar.isFadeOut : null }>
-                    { this.props.children }
-                </Aux>
+                <hr/>
+                <div className={this.state.isFadeOut ? cssNavBar.isFadeOut : cssNavBar.isFadeIn}>
+                    <Aux >
+                        { this.props.children }
+                    </Aux>
+                </div>
             </div>
         );
     }
