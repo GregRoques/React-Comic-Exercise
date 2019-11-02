@@ -124,9 +124,9 @@ class Search extends Component {
                         />
                     </div>
                     { this.state.img !== "/public/noImage.jpg" ? <div className= { cssSearch.moreOptions }>
-                        <div className={cssSearch.add} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.one}>&lt; </span> <span className={cssSearch.two}>&lt; </span ><span className={cssSearch.three}>&lt;</span></div>
+                        <div className={cssSearch.subtract} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.subtractThree}>&lt; </span> <span className={cssSearch.subtractTwo}>&lt; </span ><span className={cssSearch.subtractOne}>&lt;</span></div>
                         <div className={cssSearch.moreInfo} onClick={!this.state.isModalOpen ? () => this.modalOpenHandler() : null }>More Info</div>
-                        <div className={cssSearch.subtract} onClick={() => this.addPageCounter()} > <span className={cssSearch.one}>&gt; </span> <span className={cssSearch.two}>&gt; </span ><span className={cssSearch.three}>&gt;</span></div>
+                        <div className={cssSearch.add} onClick={() => this.addPageCounter()} > <span className={cssSearch.addOne}>&gt; </span> <span className={cssSearch.addTwo}>&gt; </span ><span className={cssSearch.addThree}>&gt;</span></div>
                     </div>
                         : null }
                 </div>

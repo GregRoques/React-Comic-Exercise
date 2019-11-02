@@ -46,7 +46,7 @@
     transform: scaleX(1);
   }
 
-.add, .subtract {
+.add span, .subtract span{
     font-style: italic;
     font-family: 'Pacifico', cursive;
     text-align: center;
@@ -54,7 +54,7 @@
     font-size: 2rem;
 }
   
-.add > .one {
+ .addOne {
       opacity: 0;
       -webkit-animation: addDot 2s infinite;
       -webkit-animation-delay: 0.0s;
@@ -62,7 +62,7 @@
       animation-delay: 0.0s;
   }
   
-  .add > .two {
+  .addTwo {
       opacity: 0;
       -webkit-animation: addDot 2s infinite;
       -webkit-animation-delay: 0.25s;
@@ -70,7 +70,7 @@
         animation-delay: 0.25s;
   }
   
-  .add > .threee {
+  .addThree {
       opacity: 0;
       -webkit-animation: addDot 2s infinite;
       -webkit-animation-delay: 0.35s;
@@ -91,7 +91,7 @@
       100% { opacity: 1; }
   }
 
-  .subtract > .one {
+  .subtractOne {
     opacity: 0;
     -webkit-animation: subtractDot 2s infinite;
     -webkit-animation-delay: 0.0s;
@@ -99,7 +99,7 @@
     animation-delay: 0.0s;
 }
 
-.subtract > .two {
+.subtractTwo {
     opacity: 0;
     -webkit-animation: subtractDot 2s infinite;
     -webkit-animation-delay: 0.25s;
@@ -107,7 +107,7 @@
       animation-delay: 0.25s;
 }
 
-.subtract > .threee {
+.subtractThree {
     opacity: 0;
     -webkit-animation: subtractDot 2s infinite;
     -webkit-animation-delay: 0.35s;
@@ -116,15 +116,15 @@
 }
   
 @-webkit-keyframes subtractDot {
-      0% { opacity: 1; }
+      0% { opacity: 0; }
      50% { opacity: 0; }
-    100% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 @keyframes subtractDot {
-      0% { opacity: 1; }
+      0% { opacity: 0; }
      50% { opacity: 0; }
-    100% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 .comicContainer{
