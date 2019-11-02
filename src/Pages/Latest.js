@@ -62,7 +62,7 @@ class Latest extends Component {
                     </div> 
                         { this.state.img !== "/public/noImage.jpg"
                             ? <div className= { cssLatest.moreOptions }> 
-                                <div className={cssSearch.moreInfo} onClick={!this.state.isVisible ? () => this.modalOpenHandler(): null }>More Info</div>
+                                <div className={cssLatest.moreInfo} onClick={!this.state.isVisible ? () => this.modalOpenHandler(): null }>More Info</div>
                             </div>
                             : null 
                         }

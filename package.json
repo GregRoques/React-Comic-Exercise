@@ -5,11 +5,12 @@
   "dependencies": {
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^8.18.7"
   },
   "scripts": {
     "start": "PORT=3006 react-scripts start"
-
   },
   "eslintConfig": {
     "extends": "react-app"
