@@ -131,9 +131,20 @@
   width: 80%;
   height:auto;
   margin: 0px 0px 1rem 0px;
+  animation: fadeIn 2s forwards;
 }
   
 .moreOptions{
   text-align: center;
   color:black
+}
+
+
+@keyframes fadeIn{
+  0%{
+      opacity:0;
+  }
+  100%{
+      opacity:1;
+  }
 }
