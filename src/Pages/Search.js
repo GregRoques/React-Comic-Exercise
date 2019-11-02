@@ -39,23 +39,23 @@ class Search extends Component {
         }
     }
 
-    addPageCounter = () => {
+    addPageCounter = async () => {
         let newPage = parseInt(this.state.currentPage) + 1;
         if (newPage > 2199) {
             newPage = 1;
         }
-        this.setState({
+        await this.setState({
             currentPage: newPage
         });
         this.getLatestIssue();
     }
 
-    subtractPageCounter = () => {
+    subtractPageCounter = async () => {
         let newPage = parseInt(this.state.currentPage) - 1;
         if (newPage < 1) {
             newPage = 2199;
         };
-        this.setState({
+        await this.setState({
             currentPage: newPage
         });
         this.getLatestIssue();
