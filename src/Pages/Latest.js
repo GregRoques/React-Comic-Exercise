@@ -35,10 +35,10 @@ class Latest extends Component {
         })
     }
 
-    modalOpenHandler = props => {
-        this.setState({
-            isModalOpen: props
-        })
+    modalOpenHandler = () => {
+        this.setState((prevState) => ({
+            isModalOpen: !prevState.isModalOpen
+        }));
     }
 
     render() {
@@ -62,7 +62,7 @@ class Latest extends Component {
                     </div> 
                         { this.state.img !== "/public/noImage.jpg"
                             ? <div className= { cssLatest.moreOptions }> 
-                                <div className={cssLatest.moreInfo} onClick={() => this.openModal(true) }>More Info</div> 
+                                <div className={cssSearch.moreInfo} onClick={!this.state.isVisible ? () => this.modalOpenHandler(): null }>More Info</div>
                             </div>
                             : null 
                         }

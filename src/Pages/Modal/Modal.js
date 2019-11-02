@@ -5,7 +5,7 @@ const Modal = ({ date, title, alt, isDisplayed, closed }) => {
     return isDisplayed ? (
     <div className={ cssModal.modal }>
         <div className={ cssModal.modalPosition }>
-            <div className={ cssModal.closeButton } onClick={e=> closed(e) }>X</div>
+            <div className={ cssModal.closeButton } onClick={closed}>X</div>
             <div className={ cssModal.containter }>
                 <div className={ cssModal.title }>{ title }</div>
                 <div className={ cssModal.date }>{ date }</div>

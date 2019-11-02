@@ -14,6 +14,16 @@ class Search extends Component {
         date: null
     };
 
+    ImageFooter = () => {
+        return(
+            <div className= { cssSearch.moreOptions }>
+                <div className={cssSearch.add} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.one}>&lt; </span> <span className={cssSearch.two}>&lt; </span ><span className={cssSearch.three}>&lt;</span></div>
+                <div className={cssSearch.moreInfo} onClick={!this.state.isVisible ? () => this.modalOpenHandler(): null }>More Info</div>
+                <div className={cssSearch.subtract} onClick={() => this.addPageCounter()} > <span className={cssSearch.one}>&gt; </span> <span className={cssSearch.two}>&gt; </span ><span className={cssSearch.three}>&gt;</span></div>
+            </div>
+        )
+    }
+
     newPageHandler = e =>{
         this.setState({
             currentPage: e.target.value
@@ -39,24 +49,23 @@ class Search extends Component {
         }
     }
 
-    pageCounter = props => {
+    addPageCounter = () => {
+
+        currentPage > 2199 ? newPage = 1 : newPage = currentPage ++
+        this.setState({
+            currentPage: newPage,
+        })
+        this.getLatestIssue()
+    }
+
+    subtractPageCounter = () => {
         let currentPage = this.state.currentPage;
         let newPage;
-        if (props === "add"){
-            currentPage > 2199 ? newPage = 1 : newPage = currentPage ++
-            this.setState({
-                currentPage: newPage,
-                searchPlaceHolder: "Enter a number between 1 - 2199."
-            })
-            this.getLatestIssue()
-        } else {
-            currentPage < 1 ? newPage = 2199 : newPage = currentPage --
-            this.setState({
-                currentPage: newPage,
-                searchPlaceHolder: "Enter a number between 1 - 2199."
-            })
-            this.getLatestIssue()
-        }
+        currentPage < 1 ? newPage = 2199 : newPage = currentPage --
+        this.setState({
+            currentPage: newPage,
+        })
+        this.getLatestIssue()
     }
 
     getLatestIssue = () => {
@@ -80,10 +89,10 @@ class Search extends Component {
         })
     }
 
-    modalOpenHandler = props => {
-        this.setState({
-            isModalOpen: props
-        })
+    modalOpenHandler = () => {
+        this.setState((prevState) => ({
+            isModalOpen: !prevState.isModalOpen
+        }));
     }
 
     render() {
@@ -120,12 +129,9 @@ class Search extends Component {
                                 title={this.state.title}
                             />
                         </div> 
-                        <div className= { cssSearch.moreOptions }>
-                            <div className={cssSearch.add} onClick={() => this.pageCounter("subtract")}> <span className={cssSearch.one}>&lt; </span> <span className={cssSearch.two}>&lt; </span ><span className={cssSearch.three}>&lt;</span></div>
-                            <div className={cssSearch.moreInfo} onClick={e => this.modalOpenHandler(e) }>More Info</div>
-                            <div className={cssSearch.subtract} onClick={() => this.pageCounter("add")} > <span className={cssSearch.one}>&gt; </span> <span className={cssSearch.two}>&gt; </span ><span className={cssSearch.three}>&gt;</span></div>
-                        </div>
-                        
+                        { this.state.img !== "/public/noImage.jpg" ?
+                            <ImageFooter />
+                        : null }
                     </div>
                 : null
                  }
