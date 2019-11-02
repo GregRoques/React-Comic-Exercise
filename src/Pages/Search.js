@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import cssSearch from "./cssPages.module.css";
 import Modal from "./Modal/Modal";
 
 class Search extends Component {
-    state = { 
+    state = {
         isModalOpen: false,
         currentPage: "",
         img: null,
@@ -14,51 +14,51 @@ class Search extends Component {
         date: null
     };
 
-    newPageHandler = e =>{
+    newPageHandler = e => {
         this.setState({
             currentPage: e.target.value
-        })
+        });
     }
 
     submitHandler = e => {
         e.preventDefault();
 
-        const number = this.state.currentPage
+        const number = this.state.currentPage;
 
-        if(number < 1 || number > 2199 || isNaN(number) === true){
+        if (number < 1 || number > 2199 || isNaN(number) === true) {
             Swal.fire({
                 title: "Nah ah ah",
                 text: "Input must be between a number 1 and 2199.",
                 imageUrl: "https://media1.giphy.com/media/FmyCxAjnOP5Di/giphy.gif"
-            })
+            });
         } else {
             this.setState({
-                currentPage: number,
-            })
+                currentPage: number
+            });
             this.getLatestIssue();
         }
     }
 
     addPageCounter = () => {
         let newPage = parseInt(this.state.currentPage) + 1;
-        if(newPage > 2199){
-            newPage = 1
+        if (newPage > 2199) {
+            newPage = 1;
         }
         this.setState({
-            currentPage: newPage,
-        })
-        this.getLatestIssue()
+            currentPage: newPage
+        });
+        this.getLatestIssue();
     }
 
     subtractPageCounter = () => {
-        let newPage = parseInt(this.state.currentPage) -1;
-        if(newPage < 1){
-            newPage = 2199 
-        } 
+        let newPage = parseInt(this.state.currentPage) - 1;
+        if (newPage < 1) {
+            newPage = 2199;
+        };
         this.setState({
-            currentPage: newPage,
-        })
-        this.getLatestIssue()
+            currentPage: newPage
+        });
+        this.getLatestIssue();
     }
 
     getLatestIssue = () => {
@@ -66,21 +66,21 @@ class Search extends Component {
         const url = `https://xkcd.now.sh/?comic=${currentPage}`;
 
         axios.get(url)
-        .then(res =>{
-            const { img, title, alt, month, year} = res.data;
-            let fullMonth = month === "1" ? "January" : month === "2" ? "February" : month === "3" ? "March" : month === "4" ? "April" : month === "5" ? "May" : month === "6" ? "June" : month === "7" ? "July" : month === "8" ? "August" : month === "9" ? "September" : month === "10" ? "October" : month === "11" ? "November" : month === "12" ? "December" : null;
-            this.setState({
-                img,
-                title: alt,
-                alt: title,
-                date: `${fullMonth}, ${year}`
+            .then(res => {
+                const { img, title, alt, month, year } = res.data;
+                const fullMonth = month === "1" ? "January" : month === "2" ? "February" : month === "3" ? "March" : month === "4" ? "April" : month === "5" ? "May" : month === "6" ? "June" : month === "7" ? "July" : month === "8" ? "August" : month === "9" ? "September" : month === "10" ? "October" : month === "11" ? "November" : month === "12" ? "December" : null;
+                this.setState({
+                    img,
+                    title: alt,
+                    alt: title,
+                    date: `${fullMonth}, ${year}`
+                });
             })
-        })
-        .catch(() => {
-            this.setState({
-                img: "/public/noImage.jpg"
-            })
-        })
+            .catch(() => {
+                this.setState({
+                    img: "/public/noImage.jpg"
+                });
+            });
     }
 
     modalOpenHandler = () => {
@@ -89,8 +89,7 @@ class Search extends Component {
         }));
     }
 
-    render() {
-        console.log(this.state)
+    render () {
         return (
             <div>
                 <Modal
@@ -99,7 +98,7 @@ class Search extends Component {
                     alt = { this.state.alt }
                     isDisplayed = { this.state.isModalOpen}
                     closed = {this.modalOpenHandler}
-                /> 
+                />
                 <form className="searchForm" onSubmit={e => this.submitHandler(e)}>
                     <input
                         id="search-term"
@@ -115,30 +114,24 @@ class Search extends Component {
                         className="searchSubmit"
                     > Search</button>
                 </form>
-                 { this.state.img ? 
-                    <div>
-                        <div key={this.state.img} className={ cssSearch.comicContainer}>
-                            <img
-                                className={ cssSearch.latestImage }
-                                src={this.state.img}
-                                alt={this.state.alt}
-                                title={this.state.title}
-                            />
-                        </div> 
-                        { this.state.img !== "/public/noImage.jpg" ?
-                            <div className= { cssSearch.moreOptions }>
-                            <div className={cssSearch.add} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.one}>&lt; </span> <span className={cssSearch.two}>&lt; </span ><span className={cssSearch.three}>&lt;</span></div>
-                            <div className={cssSearch.moreInfo} onClick={!this.state.isModalOpen ? () => this.modalOpenHandler(): null }>More Info</div>
-                            <div className={cssSearch.subtract} onClick={() => this.addPageCounter()} > <span className={cssSearch.one}>&gt; </span> <span className={cssSearch.two}>&gt; </span ><span className={cssSearch.three}>&gt;</span></div>
-                        </div>
-                        : null }
+                { this.state.img ? <div>
+                    <div key={this.state.img} className={ cssSearch.comicContainer}>
+                        <img
+                            className={ cssSearch.latestImage }
+                            src={this.state.img}
+                            alt={this.state.alt}
+                            title={this.state.title}
+                        />
                     </div>
-                : null
-                 }
-                <div>
-
+                    { this.state.img !== "/public/noImage.jpg" ? <div className= { cssSearch.moreOptions }>
+                        <div className={cssSearch.add} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.one}>&lt; </span> <span className={cssSearch.two}>&lt; </span ><span className={cssSearch.three}>&lt;</span></div>
+                        <div className={cssSearch.moreInfo} onClick={!this.state.isModalOpen ? () => this.modalOpenHandler() : null }>More Info</div>
+                        <div className={cssSearch.subtract} onClick={() => this.addPageCounter()} > <span className={cssSearch.one}>&gt; </span> <span className={cssSearch.two}>&gt; </span ><span className={cssSearch.three}>&gt;</span></div>
+                    </div>
+                        : null }
                 </div>
-
+                    : null
+                }
             </div>
         );
     }

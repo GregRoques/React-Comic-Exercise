@@ -26,10 +26,6 @@
     text-decoration: none;
 }
 
-.headerContainerText > span:hover {
-   
-}
-
 .headerContainerText > span:before {
     content: "";
     position: absolute;
