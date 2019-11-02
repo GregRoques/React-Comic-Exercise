@@ -16,16 +16,18 @@ class Latest extends Component {
         this.getLatestIssue();
     }
 
+
     getLatestIssue = () => {
         const url = `https://xkcd.now.sh/?comic=latest`;
         axios.get(url)
         .then(res =>{
-            const { img, title, alt, date} = res.data;
+            const { img, title, alt, month, year} = res.data;
+            let fullMonth = month === "1" ? "January" : month === "2" ? "February" : month === "3" ? "March" : month === "4" ? "April" : month === "5" ? "May" : month === "6" ? "June" : month === "7" ? "July" : month === "8" ? "August" : month === "9" ? "September" : month === "10" ? "October" : month === "11" ? "November" : month === "12" ? "December" : null;
             this.setState({
                 img,
                 title: alt,
                 alt: title,
-                date
+                date: `${fullMonth}, ${year}`
             })
         })
         .catch(() => {
@@ -60,12 +62,13 @@ class Latest extends Component {
                             title={this.state.title}
                         />
                     </div> 
-                        { this.state.img !== "/public/noImage.jpg"
+                        { this.state.img !== "/noImage.jpg"
                             ? <div className= { cssLatest.moreOptions }> 
-                                <div className={cssLatest.moreInfo} onClick={!this.state.isVisible ? () => this.modalOpenHandler(): null }>More Info</div>
+                            <div className={cssLatest.moreInfo} onClick={!this.state.isModalOpen ? () => this.modalOpenHandler(): null }>More Info</div>
                             </div>
                             : null 
                         }
+                        
                 </div>
 
             </div>

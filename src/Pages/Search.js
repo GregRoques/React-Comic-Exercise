@@ -14,16 +14,6 @@ class Search extends Component {
         date: null
     };
 
-    ImageFooter = () => {
-        return(
-            <div className= { cssSearch.moreOptions }>
-                <div className={cssSearch.add} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.one}>&lt; </span> <span className={cssSearch.two}>&lt; </span ><span className={cssSearch.three}>&lt;</span></div>
-                <div className={cssSearch.moreInfo} onClick={!this.state.isVisible ? () => this.modalOpenHandler(): null }>More Info</div>
-                <div className={cssSearch.subtract} onClick={() => this.addPageCounter()} > <span className={cssSearch.one}>&gt; </span> <span className={cssSearch.two}>&gt; </span ><span className={cssSearch.three}>&gt;</span></div>
-            </div>
-        )
-    }
-
     newPageHandler = e =>{
         this.setState({
             currentPage: e.target.value
@@ -50,9 +40,10 @@ class Search extends Component {
     }
 
     addPageCounter = () => {
-        let {currentPage} = this.state
-        let newPage;
-        currentPage > 2199 ? newPage = 1 : newPage = currentPage ++
+        let newPage = parseInt(this.state.currentPage) + 1;
+        if(newPage > 2199){
+            newPage = 1
+        }
         this.setState({
             currentPage: newPage,
         })
@@ -60,9 +51,10 @@ class Search extends Component {
     }
 
     subtractPageCounter = () => {
-        let {currentPage} = this.state
-        let newPage;
-        currentPage < 1 ? newPage = 2199 : newPage = currentPage --
+        let newPage = parseInt(this.state.currentPage) -1;
+        if(newPage < 1){
+            newPage = 2199 
+        } 
         this.setState({
             currentPage: newPage,
         })
@@ -70,17 +62,18 @@ class Search extends Component {
     }
 
     getLatestIssue = () => {
-        const currPage = this.state.currentPage;
-        const url = `https://xkcd.now.sh/?comic=${currPage}`;
+        const { currentPage } = this.state;
+        const url = `https://xkcd.now.sh/?comic=${currentPage}`;
 
         axios.get(url)
         .then(res =>{
-            const { img, title, alt, date} = res.data;
+            const { img, title, alt, month, year} = res.data;
+            let fullMonth = month === "1" ? "January" : month === "2" ? "February" : month === "3" ? "March" : month === "4" ? "April" : month === "5" ? "May" : month === "6" ? "June" : month === "7" ? "July" : month === "8" ? "August" : month === "9" ? "September" : month === "10" ? "October" : month === "11" ? "November" : month === "12" ? "December" : null;
             this.setState({
                 img,
                 title: alt,
                 alt: title,
-                date
+                date: `${fullMonth}, ${year}`
             })
         })
         .catch(() => {
@@ -124,7 +117,7 @@ class Search extends Component {
                 </form>
                  { this.state.img ? 
                     <div>
-                        <div className={ cssSearch.comicContainer}>
+                        <div key={this.state.img} className={ cssSearch.comicContainer}>
                             <img
                                 className={ cssSearch.latestImage }
                                 src={this.state.img}
@@ -133,7 +126,11 @@ class Search extends Component {
                             />
                         </div> 
                         { this.state.img !== "/public/noImage.jpg" ?
-                            <this.ImageFooter />
+                            <div className= { cssSearch.moreOptions }>
+                            <div className={cssSearch.add} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.one}>&lt; </span> <span className={cssSearch.two}>&lt; </span ><span className={cssSearch.three}>&lt;</span></div>
+                            <div className={cssSearch.moreInfo} onClick={!this.state.isModalOpen ? () => this.modalOpenHandler(): null }>More Info</div>
+                            <div className={cssSearch.subtract} onClick={() => this.addPageCounter()} > <span className={cssSearch.one}>&gt; </span> <span className={cssSearch.two}>&gt; </span ><span className={cssSearch.three}>&gt;</span></div>
+                        </div>
                         : null }
                     </div>
                 : null

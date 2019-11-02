@@ -15,14 +15,14 @@
 
 .moreOptions > div {
   position: relative;
-  color: transparent;
+  color: black;
   text-decoration: none;
     
 }
 
 .moreOptions > div:hover  {
     cursor: pointer;
-    color: transparent;
+    color: black;
 }
 
 .moreOptions > div:before {
@@ -32,7 +32,7 @@
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #F73704;
+    background-color: rgb(250,173,73);
     visibility: hidden;
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
@@ -127,4 +127,13 @@
     100% { opacity: 0; }
 }
 
+.comicContainer{
+  width: 80%;
+  height:auto;
+  margin: 0px 0px 1rem 0px;
+}
   
+.moreOptions{
+  text-align: center;
+  color:black
+}
