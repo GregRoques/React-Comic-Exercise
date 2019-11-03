@@ -20,7 +20,8 @@ class NavBar extends Component {
     }
 
     render () {
-        const isHomeBold = window.location.pathname === "/";
+        const currLocation = window.location.pathname
+        const isHomeBold = currLocation === "/";
         return (
             <div>
                 <div className={ cssNavBar.container}>
