@@ -1,16 +1,10 @@
-# Support Engineer Challenge
-
-Welcome! If you are reading this, it's likely because you want to work with us. If you have already applied, then continue on. If not, check out our [careers](https://newstorycharity.org/careers/) page to see our available openings. No software developer opening? Email us anyway!
+# The Challenge
 
 # Instructions
 
 The goal of this coding challenge is to allow us to see how you approach a technical problem. This challenge is geared more towards a junior or entry level coding ability, specifically with experience in React.
 
-This should take about **2-3 hours** to complete, but please don't spend more than 5 hours on it. If you get to that point, it's likely that this current role might not be a good fit.
-
-Upon completion, a **public** Github URL should be sent to the following:
-
-- [tim@newstorycharity.org](mailto:tim@newstorycharity.org)
+This should take about **2-3 hours** to complete, but please don't spend more than 5 hours on it. 
 
 > Pro Tip. Read this doc in it's entirety BEFORE you do anything. One of the main things we'll be looking for is someone who can follow directions well.
 
