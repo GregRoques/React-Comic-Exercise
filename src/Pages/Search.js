@@ -14,6 +14,17 @@ class Search extends Component {
         date: null
     };
 
+    componentDidMount(){
+        if (window.location.pathname !== "/search"){
+            const currentComic=(window.location.pathname).split('/search/').pop();
+            this.setState({
+                currentPage: currentComic
+            });
+            this.getLatestIssue();
+            window.history.pushState(null, null, `/search`);
+        }
+    }
+
     newPageHandler = e => {
         this.setState({
             currentPage: e.target.value
