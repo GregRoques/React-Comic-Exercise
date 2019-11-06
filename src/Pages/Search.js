@@ -17,11 +17,15 @@ class Search extends Component {
     componentDidMount(){
         if (window.location.pathname !== "/search"){
             const currentComic=(window.location.pathname).split('/search/').pop();
-            this.setState({
-                currentPage: currentComic
-            });
-            this.getLatestIssue();
-            window.history.pushState(null, null, `/search`);
+            if ( currentComic > 0 && currentComic <2200){
+                this.setState({
+                    currentPage: currentComic
+                });
+                this.getLatestIssue();
+                window.history.pushState(null, null, `/search/${currentComic}`);
+            } else {
+                window.history.pushState(null, null, `/search`);
+            }
         }
     }
 
@@ -86,6 +90,7 @@ class Search extends Component {
                     alt: title,
                     date: `${fullMonth}, ${year}`
                 });
+                window.history.pushState(null, null, `/search/${currentComic}`)
             })
             .catch(() => {
                 this.setState({
