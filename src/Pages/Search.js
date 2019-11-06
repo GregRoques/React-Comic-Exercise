@@ -14,15 +14,14 @@ class Search extends Component {
         date: null
     };
 
-    componentDidMount(){
+    async componentDidMount(){
         if (window.location.pathname !== "/search"){
             const currentComic=(window.location.pathname).split('/search/').pop();
-            if ( currentComic > 0 && currentComic <2200){
-                this.setState({
+            if ( !isNaN(currentComic) && currentComic > 0 && currentComic <2200){
+                await this.setState({
                     currentPage: currentComic
                 });
                 this.getLatestIssue();
-                window.history.pushState(null, null, `/search/${currentComic}`);
             } else {
                 window.history.pushState(null, null, `/search`);
             }
@@ -90,7 +89,7 @@ class Search extends Component {
                     alt: title,
                     date: `${fullMonth}, ${year}`
                 });
-                window.history.pushState(null, null, `/search/${currentComic}`)
+                window.history.pushState(null, null, `/search/${currentPage}`)
             })
             .catch(() => {
                 this.setState({
