@@ -93,7 +93,7 @@ class Search extends Component {
             })
             .catch(() => {
                 this.setState({
-                    img: "/public/noImage.jpg"
+                    img: "https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547"
                 });
             });
     }
