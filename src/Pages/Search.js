@@ -114,7 +114,7 @@ class Search extends Component {
                     isDisplayed = { this.state.isModalOpen}
                     closed = {this.modalOpenHandler}
                 />
-                <form className="searchForm" onSubmit={e => this.submitHandler(e)}>
+                <form className={cssSearch.searchForm} onSubmit={e => this.submitHandler(e)}>
                     <input
                         id="search-term"
                         type="text"
@@ -130,7 +130,7 @@ class Search extends Component {
                     > Search</button>
                 </form>
                 { this.state.img ? <div>
-                    <div key={this.state.img} className={ cssSearch.comicContainer}>
+                    <div key={this.state.img} className={ cssSearch.comicSearchContainer }>
                         <img
                             className={ cssSearch.latestImage }
                             src={this.state.img}
@@ -139,7 +139,7 @@ class Search extends Component {
                         />
                     </div>
                     { this.state.img !== "/public/noImage.jpg" ? <div className= { cssSearch.moreOptions }>
-                        <div className={cssSearch.subtract} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.subtractThree}>&lt; </span> <span className={cssSearch.subtractTwo}>&lt; </span ><span className={cssSearch.subtractOne}>&lt;</span></div>
+                        <div className={cssSearch.subtract} onClick={() => this.subtractPageCounter()}> <span className={cssSearch.subtractThree}>&lt;</span> <span className={cssSearch.subtractTwo}>&lt;</span ><span className={cssSearch.subtractOne}>&lt;</span></div>
                         <div className={cssSearch.moreInfo} onClick={!this.state.isModalOpen ? () => this.modalOpenHandler() : null }>More Info</div>
                         <div className={cssSearch.add} onClick={() => this.addPageCounter()} > <span className={cssSearch.addOne}>&gt; </span> <span className={cssSearch.addTwo}>&gt; </span ><span className={cssSearch.addThree}>&gt;</span></div>
                     </div>

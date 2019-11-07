@@ -1,18 +1,78 @@
 .modal {
     position: fixed;
-    z-index: 200;
-    border: 1px solid #eee;
-    box-shadow: 0 4px 4px #ccc;
-    background-color:rgb(242,212,83);
-    padding: 10px;
-    text-align: center;
-    box-sizing: border-box;
-    top: 30%;
-    left: 25%;
-    width: 50%;
-    max-height:50%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+    transition:  linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    z-index: 10;
+}
+
+.enter{
     animation: openModal 0.4s ease-out forwards;
 }
+.date{
+    color:red;
+    font-weight: 600;
+    margin: 15px 0 15px 0;
+}
+
+.modalPosition{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modalContact {
+    background-color: white;
+    padding:0.75rem;
+    padding-top:1.5rem;
+    width: 20rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    box-shadow: 2px 2px 3px rgb(0,0,0,0.5)
+}
+.closeButton {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:  white;
+    width: 1.5rem;
+    line-height:1.5rem;
+    height:1.5rem;
+    text-align: center;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color:rgb(50,50,50);
+    transition: 0.25s
+}
+.closeButton:hover {
+    /* color: rgb(35,64,143); */
+    background-color:transparent;
+}
+
+.contactFormat{
+    color:   rgb(100,100,100,0.65);
+    font-size:1rem;
+    font-family: sans-serif;
+    /* line-height: 2; */
+}
+
+.contactFormat a{
+    text-decoration: none; 
+    color: rgb(100,100,100,0.65);
+}
+.contactTitle{
+    font-family: 'GregsHeader';
+    font-size:2rem;
+    color:  rgb(35,64,143);
+}
+
+
 
 @keyframes openModal{
     0%{

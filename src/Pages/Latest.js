@@ -53,7 +53,7 @@ class Latest extends Component {
                     closed = {this.modalOpenHandler }
                 />
                 <div>
-                    <div className={ cssLatest.comicContainer}>
+                    <div className={ cssLatest.comicLatestContainer }>
                         <img
                             className={ cssLatest.latestImage }
                             src={this.state.img}

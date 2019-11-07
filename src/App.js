@@ -16,7 +16,7 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={ Latest } />
                     <Route exact path="/search" component={ Search } />
-                    <Route path="/search/:comic" component={ Search }/>
+                    <Route exact path="/search/:comic" component={ Search }/>
                     <Route component={ NoPage } />
                 </Switch>
             </NavBar>
