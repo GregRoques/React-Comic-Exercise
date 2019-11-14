@@ -1,3 +1,5 @@
+[![YouTube](/public/readme.png)](https://www.youtube.com/watch?v=paOwy9fHViU&feature=youtu.be)
+
 # The Challenge
 
 # Instructions
