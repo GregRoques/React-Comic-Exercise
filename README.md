@@ -1,3 +1,15 @@
+# Packages
+* npm install eslint --save-dev
+    * ./node_modules/.bin/eslint --init
+
+## Front End
+* npx i create-react-app
+* npm i react-router-dom
+* npm i sweetalert2
+* npm i axios
+
+# Video Demo
+
 [![YouTube](/public/readme.png)](https://www.youtube.com/watch?v=paOwy9fHViU&feature=youtu.be)
 
 # The Challenge

@@ -8,26 +8,24 @@ class NavBar extends Component {
     }
 
     selectLink = props => {
-        this.setState({
-            isFadeOut: true
-        });
-        setTimeout(() => {
-            window.location.replace(props);
+        if (props !== window.location.pathname) {
             this.setState({
-                isFadeOut: false
+                isFadeOut: true
             });
-        }, 2000);
+            setTimeout(() => {
+                window.location.replace(props);
+            }, 2000);
+        }
     }
 
     render () {
-        const currLocation = window.location.pathname
-        const isHomeBold = currLocation === "/";
+        const currWindow = window.location.pathname.includes("search") ? "/search" : "/";
         return (
             <div>
                 <div className={ cssNavBar.container}>
                     <div className ={ cssNavBar.headerContainerText}>
-                        <span className = { isHomeBold ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/") } >Latest </span>
-                        <span className = { !isHomeBold ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/search") } >Search </span>
+                        <span className = { currWindow === "/" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/") } >Latest </span>
+                        <span className = { currWindow === "/search" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/search") } >Search </span>
                     </div>
                 </div>
                 <hr/>

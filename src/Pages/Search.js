@@ -118,7 +118,7 @@ class Search extends Component {
                     <input
                         id="search-term"
                         type="text"
-                        maxlength="4"
+                        maxLength="4"
                         placeholder="Enter a number between 1 - 2199."
                         className="searchInput"
                         onChange={e => this.newPageHandler(e)}
