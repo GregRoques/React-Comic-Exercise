@@ -10,7 +10,7 @@
 
 # Video Demo
 
-[![YouTube](/public/readme.png)](https://www.youtube.com/watch?v=paOwy9fHViU&feature=youtu.be)
+[![YouTube](/public/readme.png)](https://www.youtube.com/watch?v=LzCndXfJRGg&feature=youtu.be)
 
 # The Challenge
 

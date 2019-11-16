@@ -8,6 +8,7 @@ class Search extends Component {
     state = {
         isModalOpen: false,
         currentPage: "",
+        displayPage: "",
         img: null,
         title: null,
         alt: null,
@@ -19,7 +20,7 @@ class Search extends Component {
             const currentComic = (window.location.pathname).split("/search/").pop();
             if (!isNaN(currentComic) && currentComic > 0 && currentComic < 2200) {
                 await this.setState({
-                    currentPage: currentComic
+                    displayPage: currentComic
                 });
                 this.getLatestIssue();
             } else {
@@ -34,68 +35,67 @@ class Search extends Component {
         });
     }
 
-    submitHandler = e => {
+    submitHandler = async e => {
         e.preventDefault();
 
-        const number = this.state.currentPage;
+        await this.setState((prevState) => ({
+            displayPage: parseInt(prevState.currentPage),
+            currentPage: ""
+        }));
 
-        if (number < 1 || number > 2199 || isNaN(number) === true) {
+        this.getLatestIssue();
+    }
+
+    addPageCounter = async () => {
+        let newPage = this.state.displayPage + 1;
+        if (newPage > 2199) {
+            newPage = 1;
+        }
+        await this.setState({
+            displayPage: newPage
+        });
+        this.getLatestIssue();
+    }
+
+    subtractPageCounter = async () => {
+        let newPage = this.state.displayPage - 1;
+        if (newPage < 1) {
+            newPage = 2199;
+        };
+        await this.setState({
+            displayPage: newPage
+        });
+        this.getLatestIssue();
+    }
+
+    getLatestIssue = () => {
+        const { displayPage } = this.state;
+        if (displayPage < 1 || displayPage > 2199 || isNaN(displayPage) === true) {
             Swal.fire({
                 title: "Nah ah ah",
                 text: "Input must be between a number 1 and 2199.",
                 imageUrl: "https://media1.giphy.com/media/FmyCxAjnOP5Di/giphy.gif"
             });
         } else {
-            this.setState({
-                currentPage: number
-            });
-            this.getLatestIssue();
-        }
-    }
-
-    addPageCounter = async () => {
-        let newPage = parseInt(this.state.currentPage) + 1;
-        if (newPage > 2199) {
-            newPage = 1;
-        }
-        await this.setState({
-            currentPage: newPage
-        });
-        this.getLatestIssue();
-    }
-
-    subtractPageCounter = async () => {
-        let newPage = parseInt(this.state.currentPage) - 1;
-        if (newPage < 1) {
-            newPage = 2199;
-        };
-        await this.setState({
-            currentPage: newPage
-        });
-        this.getLatestIssue();
-    }
-
-    getLatestIssue = () => {
-        const { currentPage } = this.state;
-        const url = `https://xkcd.now.sh/?comic=${currentPage}`;
-
-        axios.get(url)
-            .then(res => {
-                const { img, title, alt, month, year } = res.data;
-                const fullMonth = month === "1" ? "January" : month === "2" ? "February" : month === "3" ? "March" : month === "4" ? "April" : month === "5" ? "May" : month === "6" ? "June" : month === "7" ? "July" : month === "8" ? "August" : month === "9" ? "September" : month === "10" ? "October" : month === "11" ? "November" : month === "12" ? "December" : null;
-                this.setState({
-                    img,
-                    title: alt,
-                    alt: title,
-                    date: `${fullMonth}, ${year}`
+            const url = `https://xkcd.now.sh/?comic=${displayPage}`;
+            axios.get(url)
+                .then(res => {
+                    const { img, title, alt, month, year } = res.data;
+                    const fullMonth = month === "1" ? "January" : month === "2" ? "February" : month === "3" ? "March" : month === "4" ? "April" : month === "5" ? "May" : month === "6" ? "June" : month === "7" ? "July" : month === "8" ? "August" : month === "9" ? "September" : month === "10" ? "October" : month === "11" ? "November" : month === "12" ? "December" : null;
+                    this.setState({
+                        img,
+                        title: alt,
+                        alt: title,
+                        date: `${fullMonth}, ${year}`
+                    });
+                    window.history.pushState(null, null, `/search/${displayPage}`);
+                })
+                .catch(() => {
+                    this.setState({
+                        img: "https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547"
+                    });
                 });
-                window.history.pushState(null, null, `/search/${currentPage}`);
-            })
-            .catch(() => {
-                this.setState({
-                    img: "https://dubsism.files.wordpress.com/2017/12/image-not-found.png?w=547"
-                });
-            });
+        }
     }
 
     modalOpenHandler = () => {
