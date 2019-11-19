@@ -24,8 +24,8 @@ class NavBar extends Component {
             <div>
                 <div className={ cssNavBar.container}>
                     <div className ={ cssNavBar.headerContainerText}>
-                        <span className = { currWindow === "/" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/") } >Latest </span>
-                        <span className = { currWindow === "/search" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/search") } >Search </span>
+                        <span className={cssNavBar.latest} id = { currWindow === "/" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/") } >Latest </span>
+                        <span className={cssNavBar.search} id = { currWindow === "/search" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/search") } >Search </span>
                     </div>
                 </div>
                 <hr/>

@@ -132,7 +132,7 @@ class Search extends Component {
                 { this.state.img ? <div>
                     <div key={this.state.img} className={ cssSearch.comicSearchContainer }>
                         <img
-                            className={ cssSearch.latestImage }
+                            className={ cssSearch.searchImage }
                             src={this.state.img}
                             alt={this.state.alt}
                             title={this.state.title}
