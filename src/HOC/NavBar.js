@@ -1,31 +1,48 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import Aux from "./Aux";
 import cssNavBar from "./cssNavBar.module.css";
 
 class NavBar extends Component {
     state = {
-        isFadeOut: false
+        isFadeOut: false,
+        isRedirected: false,
+        redirectLink: ""
+    }
+
+    componentDidMount() {
+        this.setState({
+            redirectLink: window.location.href.includes("search") ? "/search" : "/"
+        })
     }
 
     selectLink = props => {
         if (props !== window.location.pathname) {
             this.setState({
-                isFadeOut: true
+                isFadeOut: true,
             });
             setTimeout(() => {
-                window.location.replace(props);
+                this.setState({
+                    isRedirected: true,
+                    redirectLink: props,
+                    isFadeOut: false
+                });
             }, 2000);
         }
     }
 
+    push = () => {
+        return <Redirect push to={this.state.redirectLink}/>
+    }
+
     render () {
-        const currWindow = window.location.pathname.includes("search") ? "/search" : "/";
         return (
-            <div>
+            <div key={this.state.isRedirected}>
+                {this.state.isRedirected ? this.push() : null}
                 <div className={ cssNavBar.container}>
                     <div className ={ cssNavBar.headerContainerText}>
-                        <span className={cssNavBar.latest} id = { currWindow === "/" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/") } >Latest </span>
-                        <span className={cssNavBar.search} id = { currWindow === "/search" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/search") } >Search </span>
+                        <span className={cssNavBar.latest} id = { this.state.redirectLink === "/" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/") } >Latest </span>
+                        <span className={cssNavBar.search} id = { this.state.redirectLink === "/search" ? cssNavBar.boldText : null} onClick ={() => this.selectLink("/search") } >Search </span>
                     </div>
                 </div>
                 <hr/>
