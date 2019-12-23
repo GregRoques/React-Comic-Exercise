@@ -37,7 +37,7 @@ class NavBar extends Component {
 
     render () {
         return (
-            <div key={this.state.isRedirected}>
+            <div>
                 {this.state.isRedirected ? this.push() : null}
                 <div className={ cssNavBar.container}>
                     <div className ={ cssNavBar.headerContainerText}>
