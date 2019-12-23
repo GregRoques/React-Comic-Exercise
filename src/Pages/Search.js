@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import cssSearch from "./cssPages.module.css";
 import Modal from "./Modal/Modal";
 
+
 class Search extends Component {
     state = {
         isModalOpen: false,
+        isRedirected: false,
         currentPage: "",
         displayPage: "",
         img: null,
@@ -24,7 +27,9 @@ class Search extends Component {
                 });
                 this.getLatestIssue();
             } else {
-                window.history.pushState(null, null, `/search`);
+                this.setState({
+                    isRedirected: true
+                })
             }
         }
     }
@@ -104,9 +109,14 @@ class Search extends Component {
         }));
     }
 
+    push = () => {
+        return <Redirect push to="/search"/>
+    }
+
     render () {
         return (
             <div>
+                {this.state.isRedirected ? this.push() : null}
                 <Modal
                     date = { this.state.date }
                     title = { this.state.title }
